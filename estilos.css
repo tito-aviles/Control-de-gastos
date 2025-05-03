@@ -1,0 +1,468 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #2c3e50;
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Contenedor principal */
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Botón de grabación */
+.round-button {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin: 30px auto;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 15px rgba(76, 175, 80, 0.3);
+}
+
+.round-button:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 12px 20px rgba(76, 175, 80, 0.4);
+}
+
+.round-button.recording {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    animation: pulse 1.5s infinite;
+}
+
+/* Sección de confirmación */
+#confirmSection {
+    margin: 25px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Resumen de gastos */
+.resumen-container {
+    width: 100%;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.gastos-lista {
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 20px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+#listaGastos {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.gasto-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.gasto-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones */
+.button-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.button-group button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#guardarBtn {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+}
+
+/* Estilos mejorados para el botón de WhatsApp */
+#whatsappBtn {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(37, 211, 102, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+#whatsappBtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+#whatsappBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(37, 211, 102, 0.4);
+}
+
+#whatsappBtn:hover::before {
+    left: 100%;
+}
+
+#whatsappBtn i {
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+#whatsappBtn:hover i {
+    transform: scale(1.1);
+}
+
+/* Estilos para el botón de WhatsApp en el resumen */
+.whatsapp-resumen-btn {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(37, 211, 102, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+.whatsapp-resumen-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.whatsapp-resumen-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-resumen-btn:hover::before {
+    left: 100%;
+}
+
+.whatsapp-resumen-btn i {
+    font-size: 1.4em;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-resumen-btn:hover i {
+    transform: scale(1.1);
+}
+
+.button-group button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Animaciones */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 15px rgba(220, 53, 69, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+    }
+}
+
+/* Media queries para dispositivos móviles */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+
+    .round-button {
+        width: 80px;
+        height: 80px;
+        font-size: 24px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .button-group button {
+        width: 100%;
+    }
+}
+
+/* Estilos para el texto de resultado */
+#resultText {
+    margin: 25px 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    min-height: 50px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Estilos para los elementos del resumen */
+.gasto-item .fecha {
+    color: #6c757d;
+    font-size: 0.9em;
+    min-width: 100px;
+}
+
+.gasto-item .categoria {
+    font-weight: 600;
+    color: #2c3e50;
+    min-width: 120px;
+    text-transform: capitalize;
+}
+
+.gasto-item .monto {
+    color: #28a745;
+    font-weight: 600;
+    min-width: 80px;
+    text-align: right;
+}
+
+/* Estilos para el botón de eliminar */
+.eliminar-btn {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    padding: 8px;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+    border-radius: 50%;
+}
+
+.eliminar-btn:hover {
+    background-color: rgba(220, 53, 69, 0.1);
+    transform: scale(1.1);
+}
+
+.eliminar-btn i {
+    font-size: 1.2em;
+}
+
+/* Estilos para el total de gastos */
+.total-gastos {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 15px;
+    text-align: right;
+    font-size: 1.3em;
+    color: #2c3e50;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.total-gastos strong {
+    color: #28a745;
+    font-size: 1.4em;
+}
+
+/* Clase para elementos ocultos */
+.hidden {
+    display: none;
+}
+
+.input-methods {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.voice-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.voice-input p {
+    margin: 0;
+    color: #666;
+    position: relative;
+    padding: 0 15px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.voice-input p::before,
+.voice-input p::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.voice-input p::before {
+    right: 100%;
+}
+
+.voice-input p::after {
+    left: 100%;
+}
+
+.manual-input {
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+
+@media (max-width: 600px) {
+    .manual-input {
+        width: 90%;
+    }
+}

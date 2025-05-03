@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#4CAF50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="GastoVoz - Aplicación para registrar gastos mediante voz" />
+    <meta name="language" content="Spanish" />
+    <link rel="icon" type="image/x-icon" href="imagenes/favicon.png">
+    <title>GastosPorVoz</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>GastosPorVoz</h1>
+        <div class="input-methods">
+            <div class="voice-input">
+                <button id="recordBtn" class="round-button" aria-label="Iniciar grabación de voz">
+                    <i class="fas fa-microphone" aria-hidden="true"></i>
+                </button>
+                <p>o</p>
+            </div>
+            <div class="manual-input">
+                <form id="manualForm">
+                    <div class="form-group">
+                        <label for="montoManual">Gasto:</label>
+                        <input type="number" id="montoManual" step="0.01" min="0" required placeholder="Ej: 50.00">
+                    </div>
+                    <div class="form-group">
+                        <label for="categoriaManual">Categoría:</label>
+                        <input type="text" id="categoriaManual" required placeholder="Ej: Comida">
+                    </div>
+                    <button type="submit" class="submit-btn">Agregar Gasto</button>
+                </form>
+            </div>
+        </div>
+        <p id="resultText"></p>
+        <div id="confirmSection" class="hidden">
+            <h3>¿Guardar este gasto?</h3>
+            <p><strong>Gasto:</strong> <span id="monto"></span></p>
+            <p><strong>Categoría:</strong> <span id="categoria"></span></p>
+            <p><strong>Fecha:</strong> <span id="fecha"></span></p>
+            <div class="button-group">
+                <button id="guardarBtn" aria-label="Guardar gasto">Guardar</button>
+                <button id="whatsappBtn" aria-label="Enviar gasto por WhatsApp">Enviar por WhatsApp</button>
+            </div>
+        </div>
+        <div id="resumen" class="resumen-container">
+            <h3>Resumen de Gastos</h3>
+            <div class="gastos-lista">
+                <ul id="listaGastos"></ul>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
