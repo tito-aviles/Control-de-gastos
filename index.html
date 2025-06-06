@@ -6,16 +6,16 @@
     <meta name="theme-color" content="#4CAF50">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="description" content="listaGastos - Aplicación para registrar gastos" />
+    <meta name="description" content="GastoVoz - Aplicación para registrar gastos" />
     <meta name="language" content="Spanish" />
     <link rel="icon" type="image/x-icon" href="imagenes/favicon.png">
-    <title>Gastos</title>
+    <title>Control de Gastos</title>
     <link rel="stylesheet" href="estilos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>Gastos</h1>
+        <h1>Control de Gastos</h1>
         <div class="input-methods">
             <div class="manual-input">
                 <form id="manualForm">
@@ -34,11 +34,15 @@
         <p id="resultText"></p>
         <div id="confirmSection" class="hidden">
             <h3>¿Guardar este gasto?</h3>
-            <p>Monto: <span id="monto"></span></p>
+            <p>gasto: <span id="monto"></span></p>
             <p>Categoría: <span id="categoria"></span></p>
             <p>Fecha: <span id="fecha"></span></p>
-            <button id="guardarBtn" class="submit-btn">Guardar</button>
-            <button id="whatsappBtn" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Enviar por WhatsApp</button>
+            <div class="btn-section">
+                <button id="guardarBtn" class="submit-btn">Guardar</button>
+            </div>
+            <div class="btn-section">
+                <button id="whatsappBtn" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Enviar por WhatsApp</button>
+            </div>
         </div>
         <ul id="listaGastos"></ul>
     </div>
