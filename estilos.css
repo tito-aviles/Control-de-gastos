@@ -142,6 +142,7 @@ h1 {
 #guardarBtn {
     background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
     color: white;
+    margin-top: 15px;
 }
 
 /* Estilos mejorados para el botón de WhatsApp */
