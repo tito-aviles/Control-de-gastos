@@ -180,7 +180,7 @@ function enviarPorWhatsApp(gasto) {
                        `📅 Fecha: ${gasto.fecha}\n` +
                        `📋 Categoría: ${gasto.categoria}\n` +
                        `💶 Monto: ${gasto.monto}€\n\n` +
-                       `Enviado desde Gastos`;
+                       `Enviado desde Gastos by Gerardo López`;
         const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}`;
         const ventanaWhatsApp = window.open(url, '_blank');
         if (!ventanaWhatsApp) {
