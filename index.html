@@ -6,23 +6,17 @@
     <meta name="theme-color" content="#4CAF50">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="description" content="GastoVoz - Aplicación para registrar gastos mediante voz" />
+    <meta name="description" content="listaGastos - Aplicación para registrar gastos" />
     <meta name="language" content="Spanish" />
     <link rel="icon" type="image/x-icon" href="imagenes/favicon.png">
-    <title>GastosPorVoz</title>
+    <title>Gastos</title>
     <link rel="stylesheet" href="estilos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>GastosPorVoz</h1>
+        <h1>Gastos</h1>
         <div class="input-methods">
-            <div class="voice-input">
-                <button id="recordBtn" class="round-button" aria-label="Iniciar grabación de voz">
-                    <i class="fas fa-microphone" aria-hidden="true"></i>
-                </button>
-                <p>o</p>
-            </div>
             <div class="manual-input">
                 <form id="manualForm">
                     <div class="form-group">
@@ -40,20 +34,13 @@
         <p id="resultText"></p>
         <div id="confirmSection" class="hidden">
             <h3>¿Guardar este gasto?</h3>
-            <p><strong>Gasto:</strong> <span id="monto"></span></p>
-            <p><strong>Categoría:</strong> <span id="categoria"></span></p>
-            <p><strong>Fecha:</strong> <span id="fecha"></span></p>
-            <div class="button-group">
-                <button id="guardarBtn" aria-label="Guardar gasto">Guardar</button>
-                <button id="whatsappBtn" aria-label="Enviar gasto por WhatsApp">Enviar por WhatsApp</button>
-            </div>
+            <p>Monto: <span id="monto"></span></p>
+            <p>Categoría: <span id="categoria"></span></p>
+            <p>Fecha: <span id="fecha"></span></p>
+            <button id="guardarBtn" class="submit-btn">Guardar</button>
+            <button id="whatsappBtn" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Enviar por WhatsApp</button>
         </div>
-        <div id="resumen" class="resumen-container">
-            <h3>Resumen de Gastos</h3>
-            <div class="gastos-lista">
-                <ul id="listaGastos"></ul>
-            </div>
-        </div>
+        <ul id="listaGastos"></ul>
     </div>
     <script src="main.js"></script>
 </body>
