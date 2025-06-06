@@ -1,10 +1,10 @@
-# GastosPorVoz
+# Gastos
 
-Aplicación web para registrar gastos mediante reconocimiento de voz.
+Aplicación web para registrar gastos de forma manual (por texto).
 
 ## Características
 
-- Registro de gastos mediante voz
+- Registro de gastos por formulario de texto
 - Envío de gastos por WhatsApp
 - Almacenamiento local de gastos
 - Interfaz intuitiva y responsive
@@ -13,43 +13,32 @@ Aplicación web para registrar gastos mediante reconocimiento de voz.
 
 - Navegador web moderno (Chrome o Edge recomendados)
 - Conexión a internet
-- Micrófono habilitado
 - WhatsApp Web (para la función de envío)
 
 ## Instalación
 
 1. Clona este repositorio:
-```bash
-git clone https://github.com/tito-lopez/Control-de-gastos-por-voz.git
-cd gastovoz
-```
+   ```bash
+   git clone https://github.com/tito-aviles/Control-de-gastos.git
+   cd Control-de-gastos-por-voz
+   ```
 
-2. Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
-```env
-API_URL=https://tu-api-real.com/gastos
-WHATSAPP_NUMBER=tu-numero-real
-```
-
-3. Abre el archivo `index.html` en tu navegador o sirve los archivos usando un servidor local.
+2. Abre el archivo `index.html` en tu navegador o sirve los archivos usando un servidor local.
 
 ## Uso
 
-1. Haz clic en el botón del micrófono para comenzar a grabar
-2. Di el gasto en el siguiente formato: "X euros en categoría"
-   Ejemplo: "50 euros en comida"
-3. Confirma el gasto y elige si deseas guardarlo o enviarlo por WhatsApp
+1. Ingresa el monto del gasto y la categoría en el formulario
+2. Confirma el gasto y elige si deseas guardarlo o enviarlo por WhatsApp
 
 ## Estructura del Proyecto
 
 ```
-gastovoz/
+Control-de-gastos-por-voz/
 ├── index.html
 ├── estilos.css
 ├── main.js
 ├── imagenes/
 │   └── favicon.png
-├── .env
-├── .gitignore
 └── README.md
 ```
 
@@ -64,9 +53,3 @@ gastovoz/
 ## Licencia
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
-
-## Contacto
-
-Gerardo López - gerardolopezartime@gmail.com
-
-Link del Proyecto: [https://github.com/tito-lopez/Control-de-gastos-por-voz]
