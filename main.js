@@ -195,50 +195,41 @@ async function inicializarReconocimiento() {
 
 // Función para parsear el texto del gasto
 function parseGasto(texto) {
-    texto = texto.toLowerCase();
+    texto = texto.trim().toLowerCase();
+    console.log('Texto reconocido:', texto);
+
     const patrones = [
-        /(\d+(?:[.,]\d+)?)\s*(?:euros?|€|euro|eur|pesos|dólares?|usd|\$)\s*(?:en|de|para|por|a|del|de la|de las|de los|en la|en el|en las|en los)\s+(\w+(?:\s+\w+)*)/i,
-        /(\d+(?:[.,]\d+)?)\s*(?:en|de|para|por|a|del|de la|de las|de los|en la|en el|en las|en los)\s+(\w+(?:\s+\w+)*)/i,
-        /(\w+(?:\s+\w+)*)\s+(\d+(?:[.,]\d+)?)\s*(?:euros?|€|euro|eur|pesos|dólares?|usd|\$)/i,
-        /(?:gasto|gasté|gastado|gastando|gastar|gastos|gastamos|gastaron|gastaste|gastó)\s*(?:de|por|en|a|del|de la|de las|de los|en la|en el|en las|en los)?\s*(\d+(?:[.,]\d+)?)\s*(?:en|para|por|a|del|de la|de las|de los|en la|en el|en las|en los)?\s+(\w+(?:\s+\w+)*)/i,
-        /(?:he|acabo de|voy a|vamos a|han|has|ha)\s+(?:gastar|gastado|gastando|gasté|gastó|gastaste|gastaron|gastamos)?\s*(\d+(?:[.,]\d+)?)\s*(?:en|para|por|a|del|de la|de las|de los|en la|en el|en las|en los)?\s+(\w+(?:\s+\w+)*)/i,
-        /(\d+(?:[.,]\d+)?)\s*(?:para|en|de|por|a|del|de la|de las|de los|en la|en el|en las|en los)\s+(\w+(?:\s+\w+)*)/i,
-        /(\w+(?:\s+\w+)*)\s+(?:por|a|de|en|del|de la|de las|de los|en la|en el|en las|en los)\s*(\d+(?:[.,]\d+)?)\s*(?:euros?|€|euro|eur|pesos|dólares?|usd|\$)/i,
-        /(\w+(?:\s+\w+)*)\s+(\d+(?:[.,]\d+)?)/i,
-        /(\d+(?:[.,]\d+)?)\s+(\w+(?:\s+\w+)*)/i,
-        /(?:pago|pagado|pagando|pagar|pagué|pagó|pagaste|pagaron|pagamos)\s*(?:de|por|en|a|del|de la|de las|de los|en la|en el|en las|en los)?\s*(\d+(?:[.,]\d+)?)\s*(?:en|para|por|a|del|de la|de las|de los|en la|en el|en las|en los)?\s+(\w+(?:\s+\w+)*)/i,
-        /(?:compré|comprado|comprando|comprar|compró|compramos|compraron|compraste)\s*(\d+(?:[.,]\d+)?)\s*(?:en|para|por|a|del|de la|de las|de los|en la|en el|en las|en los)?\s+(\w+(?:\s+\w+)*)/i,
-        /(?:invertí|invertido|invirtiendo|invertir|invirtió|invertimos|invirtieron|invertiste)\s*(\d+(?:[.,]\d+)?)\s*(?:en|para|por|a|del|de la|de las|de los|en la|en el|en las|en los)?\s+(\w+(?:\s+\w+)*)/i,
-        /(?:desembolsé|desembolsado|desembolsando|desembolsar|desembolsó|desembolsamos|desembolsaron|desembolsaste)\s*(\d+(?:[.,]\d+)?)\s*(?:en|para|por|a|del|de la|de las|de los|en la|en el|en las|en los)?\s+(\w+(?:\s+\w+)*)/i,
-        /(?:he|acabo de|voy a|vamos a|han|has|ha)\s+(?:pagar|pagado|pagando|pagué|pagó|pagaste|pagaron|pagamos)?\s*(\d+(?:[.,]\d+)?)\s*(?:en|para|por|a|del|de la|de las|de los|en la|en el|en las|en los)?\s+(\w+(?:\s+\w+)*)/i,
-        /(?:he|acabo de|voy a|vamos a|han|has|ha)\s+(?:comprar|comprado|comprando|compré|compró|compramos|compraron|compraste)?\s*(\d+(?:[.,]\d+)?)\s*(?:en|para|por|a|del|de la|de las|de los|en la|en el|en las|en los)?\s+(\w+(?:\s+\w+)*)/i,
-        /(?:he|acabo de|voy a|vamos a|han|has|ha)\s+(?:invertir|invertido|invirtiendo|invertí|invirtió|invertimos|invirtieron|invertiste)?\s*(\d+(?:[.,]\d+)?)\s*(?:en|para|por|a|del|de la|de las|de los|en la|en el|en las|en los)?\s+(\w+(?:\s+\w+)*)/i,
-        /(?:he|acabo de|voy a|vamos a|han|has|ha)\s+(?:desembolsar|desembolsado|desembolsando|desembolsé|desembolsó|desembolsamos|desembolsaron|desembolsaste)?\s*(\d+(?:[.,]\d+)?)\s*(?:en|para|por|a|del|de la|de las|de los|en la|en el|en las|en los)?\s+(\w+(?:\s+\w+)*)/i,
-        /(\d+(?:[.,]\d+)?)\s*(?:en|de|para|por|a|del|de la|de las|de los|en la|en el|en las|en los)\s+(?:la|el|las|los|un|una|unos|unas)\s+(\w+(?:\s+\w+)*)/i,
-        /(\w+(?:\s+\w+)*)\s+(?:por|a|de|en|del|de la|de las|de los|en la|en el|en las|en los)\s+(?:la|el|las|los|un|una|unos|unas)\s+(?:cantidad|monto|valor|precio|importe|suma|total)\s+(?:de|por|en|a|del|de la|de las|de los|en la|en el|en las|en los)?\s*(\d+(?:[.,]\d+)?)/i,
-        /(\d+(?:[.,]\d+)?)\s*(?:en|de|para|por|a|del|de la|de las|de los|en la|en el|en las|en los)\s+(?:concepto|conceptos|motivo|motivos|razón|razones)\s+(?:de|por|en|a|del|de la|de las|de los|en la|en el|en las|en los)?\s+(\w+(?:\s+\w+)*)/i,
+        /(\d+(?:[.,]\d+)?)\s*(?:euros?|€|euro|eur|pesos|dólares?|usd|\$)?\s*(?:en|de|para|por|a|del|la|el|las|los)?\s+([\wáéíóúñü ]+)/i,
+        /([\wáéíóúñü ]+)\s*(\d+(?:[.,]\d+)?)/i,
+        /(?:gasto|gasté|he gastado|pagado|pagaste|compré|comprar|invertí|desembolsé)\s*(\d+(?:[.,]\d+)?)(?:\s*en)?\s+([\wáéíóúñü ]+)/i
     ];
 
-    let match = null;
-    let monto = null;
-    let categoria = null;
+    let match = null, monto = null, categoria = null;
 
     for (const patron of patrones) {
         match = texto.match(patron);
         if (match) {
-            monto = match[1];
-            categoria = match[2];
+            // determina si el monto es match[1] o match[2]
+            if (/^\d/.test(match[1])) {
+                monto = match[1];
+                categoria = match[2];
+            } else {
+                monto = match[2];
+                categoria = match[1];
+            }
             break;
         }
     }
 
-    if (match) {
+    if (match && monto && categoria) {
         const montoStr = monto.replace(',', '.');
         const montoNum = parseFloat(montoStr);
         const fecha = new Date().toLocaleDateString();
 
-        categoria = categoria.split(' ')
-            .map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1))
+        categoria = categoria
+            .replace(/\s\s+/g, ' ')
+            .split(' ')
+            .map(p => p.charAt(0).toUpperCase() + p.slice(1))
             .join(' ');
 
         gastoTemp = { monto: montoNum, categoria, fecha };
@@ -249,29 +240,12 @@ function parseGasto(texto) {
         guardarBtn.style.display = 'inline-block';
         whatsappBtn.style.display = 'inline-block';
         resultText.textContent = `Gasto reconocido: ${montoNum}€ en ${categoria}`;
+        resultText.style.color = '#4CAF50';
+        console.log('Match encontrado:', match);
     } else {
-        resultText.textContent = "No se pudo entender el gasto. Intenta decir algo como:\n" +
-                                "- '50 euros en comida'\n" +
-                                "- '25,50 euros en transporte'\n" +
-                                "- '100€ de ropa'\n" +
-                                "- '75 para ocio'\n" +
-                                "- 'comida 50 euros'\n" +
-                                "- 'gasto de 30 en cine'\n" +
-                                "- 'he gastado 20 en gasolina'\n" +
-                                "- 'pago de 15 en parking'\n" +
-                                "- 'compré 40 en supermercado'\n" +
-                                "- 'invertí 200 en tecnología'\n" +
-                                "- 'desembolsé 60 en restaurante'\n" +
-                                "- '50 comida'\n" +
-                                "- 'comida 50'\n" +
-                                "- 'he pagado 35 en la gasolinera'\n" +
-                                "- 'compré 25 en el supermercado'\n" +
-                                "- 'invertí 150 en la tecnología'\n" +
-                                "- 'desembolsé 45 en el restaurante'\n" +
-                                "- 'gasto de 30 en concepto de cine'\n" +
-                                "- 'pago de 20 por la cantidad de comida'\n" +
-                                "- 'he hecho un gasto de 40 en ropa'\n" +
-                                "- 'vamos a gastar 60 en ocio'";
+        resultText.textContent = "No se pudo entender el gasto. Intenta decir, por ejemplo: '50 euros en comida', 'comida 50' o 'gasto de 30 en gasolina'.";
+        resultText.style.color = '#f44336';
+        console.log('No hubo match con ningún patrón');
     }
 }
 
