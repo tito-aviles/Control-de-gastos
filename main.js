@@ -22,6 +22,38 @@ const manualForm = document.getElementById('manualForm');
 const montoManual = document.getElementById('montoManual');
 const categoriaManual = document.getElementById('categoriaManual');
 
+// Funciones de compatibilidad
+function soporteReconocimientoVoz() {
+    return !!(window.SpeechRecognition || window.webkitSpeechRecognition);
+}
+function soporteMicrofono() {
+    return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+}
+
+// Mostrar advertencia si no hay soporte de voz/micro
+function mostrarAdvertenciaCompatibilidad() {
+    let mensaje = "";
+    // iOS detection
+    const esIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    const esSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+    if (!soporteReconocimientoVoz() || !soporteMicrofono()) {
+        mensaje = "⚠️ El reconocimiento de voz no está disponible en este navegador o dispositivo. ";
+        mensaje += "Usa Google Chrome en Android y accede por HTTPS (no HTTP). ";
+        if (esIOS) {
+            mensaje += "En iPhone/iPad no es posible registrar gastos por voz por limitación de Apple/Safari. Usa la entrada manual.";
+        }
+    } else if (esIOS || esSafari) {
+        mensaje = "⚠️ El reconocimiento de voz NO funciona en iPhone/iPad (Safari o Chrome para iOS) por limitaciones del sistema. Usa la entrada manual.";
+    }
+
+    if (mensaje) {
+        resultText.textContent = mensaje;
+        resultText.style.color = '#f44336';
+        recordBtn.disabled = true;
+    }
+}
+
 // Cargar gastos del localStorage
 function cargarGastos() {
     try {
@@ -250,9 +282,10 @@ function parseGasto(texto) {
 }
 
 // Event Listeners
-if (recordBtn) {
-    let recognition = null;
-    document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    mostrarAdvertenciaCompatibilidad();
+    // Solo inicializa reconocimiento si no está deshabilitado
+    if (!recordBtn.disabled) {
         try {
             recognition = await inicializarReconocimiento();
             if (!recognition) {
@@ -263,10 +296,12 @@ if (recordBtn) {
             recordBtn.disabled = true;
             resultText.textContent = 'Error: ' + error.message;
         }
-        cargarGastos();
-        mostrarGastos();
-    });
+    }
+    cargarGastos();
+    mostrarGastos();
+});
 
+if (recordBtn) {
     recordBtn.addEventListener("click", async () => {
         try {
             if (!recognition) {
