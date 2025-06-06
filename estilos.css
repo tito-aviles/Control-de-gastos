@@ -382,40 +382,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-.voice-input {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.voice-input p {
-    margin: 0;
-    color: #666;
-    position: relative;
-    padding: 0 15px;
-    font-size: 18px;
-    font-weight: 500;
-}
-
-.voice-input p::before,
-.voice-input p::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 50px;
-    height: 1px;
-    background-color: #ddd;
-}
-
-.voice-input p::before {
-    right: 100%;
-}
-
-.voice-input p::after {
-    left: 100%;
-}
-
 .manual-input {
     width: 100%;
     max-width: 400px;
