@@ -158,7 +158,7 @@ function enviarResumenPorWhatsApp() {
         gastos.forEach((gasto, index) => {
             mensaje += `${index + 1}. ${gasto.fecha} - ${gasto.categoria}: ${gasto.monto}€\n`;
         });
-        mensaje += '\nEnviado desde Gastos';
+        mensaje += '\nEnviado desde Control de Gastos by Gerardo López';
         const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}`;
         const ventanaWhatsApp = window.open(url, '_blank');
         if (!ventanaWhatsApp) {
